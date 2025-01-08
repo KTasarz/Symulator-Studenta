@@ -1,24 +1,34 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/house.rpy", line 10, in script
-    e "TEST you are in the second file TEST"
-Exception: Sayer 'e' is not defined.
+  File "game/script.rpy", line 134, in script
+    $ add_hour(2)
+  File "game/script.rpy", line 134, in <module>
+    $ add_hour(2)
+  File "game/script.rpy", line 35, in add_hour
+    check_if_lose()
+  File "game/script.rpy", line 41, in check_if_lose
+    lose_flag = true
+NameError: name 'true' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/house.rpy", line 10, in script
-    e "TEST you are in the second file TEST"
-  File "C:\Programy\renpy-8.3.2-sdk\renpy\ast.py", line 2573, in execute
-    Say.execute(self)
-  File "C:\Programy\renpy-8.3.2-sdk\renpy\ast.py", line 575, in execute
-    who = eval_who(self.who, self.who_fast)
-  File "C:\Programy\renpy-8.3.2-sdk\renpy\ast.py", line 464, in eval_who
-    raise Exception("Sayer '%s' is not defined." % who)
-Exception: Sayer 'e' is not defined.
+  File "game/script.rpy", line 134, in script
+    $ add_hour(2)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\ast.py", line 821, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 134, in <module>
+    $ add_hour(2)
+  File "game/script.rpy", line 35, in add_hour
+    check_if_lose()
+  File "game/script.rpy", line 41, in check_if_lose
+    lose_flag = true
+NameError: name 'true' is not defined
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.3.2.24090902
 Symulator Studenta 1.0
-Wed Jan  8 18:39:54 2025
+Wed Jan  8 23:04:07 2025
