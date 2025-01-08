@@ -7,10 +7,8 @@
 
 label restaurant_main:
 
-    e "TEST you are in the second file TEST"
-
-    e "Congratulation! your number is: [dupa]"
+    "Jesteś w reustaracji"
 
     # This ends the game.
 
-    return
+    jump choose

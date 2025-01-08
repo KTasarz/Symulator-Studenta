@@ -7,10 +7,8 @@
 
 label shop_main:
 
-    e "TEST you are in the second file TEST"
-
-    e "Congratulation! your number is: [dupa]"
+    "Jesteś w sklepie"
 
     # This ends the game.
 
-    return
+    jump choose
