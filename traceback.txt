@@ -1,5 +1,6 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
+<<<<<<< Updated upstream
 While running game code:
   File "game/script.rpy", line 109, in script
     menu:
@@ -14,10 +15,31 @@ While running game code:
   File "game/script.rpy", line 48, in execute
     frame:
 NameError: Name 'money' is not defined.
+=======
+After initialization, but before game start.
+  File "game/shop.rpy", line 9, in prepare_screen
+    screen shoping_screen():
+  File "game/shop.rpy", line 9, in prepare
+    screen shoping_screen():
+  File "game/shop.rpy", line 10, in prepare
+    frame:
+  File "game/shop.rpy", line 10, in prepare
+    frame:
+  File "game/shop.rpy", line 13, in prepare
+    has vbox
+  File "game/shop.rpy", line 13, in prepare
+    has vbox
+  File "game/shop.rpy", line 17, in prepare
+    textbutton "Energetyk 5 zł":
+  File "game/shop.rpy", line 17, in prepare
+    textbutton "Energetyk 5 zł":
+SyntaxError: invalid syntax (game/shop.rpy, line 18)
+>>>>>>> Stashed changes
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
+<<<<<<< Updated upstream
   File "game/script.rpy", line 109, in script
     menu:
   File "C:\Programy\renpy-8.3.2-sdk\renpy\ast.py", line 1582, in execute
@@ -75,8 +97,49 @@ Full traceback:
   File "C:\Programy\renpy-8.3.2-sdk\renpy\substitutions.py", line 313, in __getitem__
     raise NameError("Name '{}' is not defined.".format(key))
 NameError: Name 'money' is not defined.
+=======
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\bootstrap.py", line 359, in bootstrap
+    renpy.main.main()
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\main.py", line 652, in main
+    run(restart)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\main.py", line 94, in run
+    renpy.display.screen.prepare_screens()
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\display\screen.py", line 1026, in prepare_screens
+    s.ast.prepare_screen()
+  File "game/shop.rpy", line 9, in prepare_screen
+    screen shoping_screen():
+  File "game/shop.rpy", line 9, in prepare
+    screen shoping_screen():
+  File "game/shop.rpy", line 10, in prepare
+    frame:
+  File "game/shop.rpy", line 10, in prepare
+    frame:
+  File "game/shop.rpy", line 13, in prepare
+    has vbox
+  File "game/shop.rpy", line 13, in prepare
+    has vbox
+  File "game/shop.rpy", line 17, in prepare
+    textbutton "Energetyk 5 zł":
+  File "game/shop.rpy", line 17, in prepare
+    textbutton "Energetyk 5 zł":
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\py3analysis.py", line 803, in ast_eval
+    return self.ast_eval_literal(expr)[0]
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\py3analysis.py", line 785, in ast_eval_literal
+    expr = py_compile(expr, 'eval', ast_node=True)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\python.py", line 1144, in py_compile
+    raise e
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\python.py", line 1081, in py_compile
+    raise orig_e
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\python.py", line 1073, in py_compile
+    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, 1)
+SyntaxError: invalid syntax (game/shop.rpy, line 18)
+>>>>>>> Stashed changes
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.3.2.24090902
 Symulator Studenta 1.0
+<<<<<<< Updated upstream
 Thu Jan  9 23:42:18 2025
+=======
+Thu Jan  9 23:18:29 2025
+>>>>>>> Stashed changes

@@ -2,9 +2,18 @@
 errors listed below, and try again.
 
 
+<<<<<<< Updated upstream
 File "game/shop.rpy", line 8: Line is indented, but the preceding textbutton statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
     action If(money >= 5, [SetVariable("money", money - 5), SetVariable("energy_drink_amount", energy_drink_amount + 1)])
     ^
 
 Ren'Py Version: Ren'Py 8.3.2.24090902
 Thu Jan  9 23:42:01 2025
+=======
+File "game/shop.rpy", line 10: keyword argument 'action' appears more than once in a button statement.
+    action Play("sound","Cha Ching")
+          ^
+
+Ren'Py Version: Ren'Py 8.3.2.24090902
+Thu Jan  9 17:06:44 2025
+>>>>>>> Stashed changes
