@@ -14,9 +14,27 @@ init python:
     sleep_drain_rate = 5            #szybkość spadku zmęczenia
     satisfaction = 100              #zadowolenie - jeśli spadnie do zera nie można wykonywać niektórych czynności
     satisfaction_drain_rate = 3     #szybkość spadku zadowolenia
+<<<<<<< Updated upstream
+    stress = 0                      #stres - jeśli urośnie do 100
+    stress_gain_rate = 2            #szybkość rośniecia stresu
     intelligence = 0                #inteligencja - wpływa na zaliczenia testu
     skills = 0                      #umiejętoność praktyczne - wpływa na zaliczenia testu
+    money = 10                      #ilość pięniedzy w posiadaniu bohatera
+    energy_drink_amount = 0         #ilość napoju energetycznego
+    bar_amount = 0                  #ilość batoników
+    beer_amount = 0                 #ilość piwa
+=======
+    stress = 0                      #stres - jeśli urośnie do 100 to gracz przegrywa
+    stress_gain_rate = 1            #szybkość rosniecia stresu
+    intelligence = 0                #inteligencja - wpływa na zaliczenia testu
+    skills = 0                      #umiejętoność praktyczne - wpływa na zaliczenia testu
+    money = 10                      #Pięniadze - ilość pięniedzy bohatera liczone w ZŁ
+    energy_drink_amount = 0         #Ilość posiadanych Enegetyków
+    bar_amount = 0                  #Ilość posiadanych batoników
+    beer_amount = 0                 #Ilość posiadanych piw
+>>>>>>> Stashed changes
     lose_flag = False               #flaga pilnująca czy gracz żyje
+
 
     #Metoda do zmiany godziny, poprzez podanie ile czasu upłyneło, wpływa na statytyki
     def add_hour(number_of_hours_passed):
@@ -24,11 +42,13 @@ init python:
         global hunger
         global sleep
         global satisfaction
+        global stress
         global day
         hour += number_of_hours_passed
         hunger -= (number_of_hours_passed * hunger_drain_rate)
         sleep -= (number_of_hours_passed * sleep_drain_rate)
         satisfaction -= (number_of_hours_passed * satisfaction_drain_rate)
+        stress += (number_of_hours_passed * stress_gain_rate)
         if hour >= 24:
             day += 1
             hour -= 24
@@ -45,14 +65,20 @@ screen stats_screen():
     frame:
         xalign 0.0 ypos 0
         vbox:
-            text "Dzień: [day]"
-            text "Godzina: [hour]"
+            text "Dzień [day]"
+            text "Godzina [hour]"
+<<<<<<< Updated upstream
+            text "Pieniądze: [money]"
+=======
+            text "Pięniądze: [money] zł"
+>>>>>>> Stashed changes
             #TODO zmienić wyświetlane wartości na paski (zwyjątkiem intela i umiejętności)
-            text "Głód: [hunger]"
-            text "Zmęczenie: [sleep]"
-            text "Zadowolenie: [satisfaction]"
-            text "Inteligencja: [intelligence]"
-            text "Umiejętoność praktyczne: [skills]"
+            text "Głód [hunger]"
+            text "Zmęczenie [sleep]"
+            text "Zadowolenie [satisfaction]"
+            text "Stres: [stress]"
+            text "Inteligencja [intelligence]"
+            text "umiejętność praktyczne [skills]"
 
 #Znalazłem w dokumentacji Renpy
 #TODO będzie trzeba zmienić położenie guzików i dodanie tła
@@ -94,10 +120,6 @@ label start:
 
     jump choose
 
-
-    # This ends the game.
-
-    return
 
 label choose:
     #Tymczasowe menu pozwalające przechodzić na obiekty na mapie
