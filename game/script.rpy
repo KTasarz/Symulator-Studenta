@@ -14,9 +14,16 @@ init python:
     sleep_drain_rate = 5            #szybkość spadku zmęczenia
     satisfaction = 100              #zadowolenie - jeśli spadnie do zera nie można wykonywać niektórych czynności
     satisfaction_drain_rate = 3     #szybkość spadku zadowolenia
+    stress = 0                      #stres - jeśli urośnie do 100
+    stress_gain_rate = 2            #szybkość rośniecia stresu
     intelligence = 0                #inteligencja - wpływa na zaliczenia testu
     skills = 0                      #umiejętoność praktyczne - wpływa na zaliczenia testu
+    money = 10                      #ilość pięniedzy w posiadaniu bohatera
+    energy_drink_amount = 0         #ilość napoju energetycznego
+    bar_amount = 0                  #ilość batoników
+    beer_amount = 0                 #ilość piwa
     lose_flag = False               #flaga pilnująca czy gracz żyje
+
 
     #Metoda do zmiany godziny, poprzez podanie ile czasu upłyneło, wpływa na statytyki
     def add_hour(number_of_hours_passed):
@@ -47,6 +54,7 @@ screen stats_screen():
         vbox:
             text "Dzień [day]"
             text "Godzina [hour]"
+            text "Pieniądze: [money]"
             #TODO zmienić wyświetlane wartości na paski (zwyjątkiem intela i umiejętności)
             text "Głód [hunger]"
             text "Zmęczenie [sleep]"

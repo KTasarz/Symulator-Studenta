@@ -1,34 +1,82 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 134, in script
-    $ add_hour(2)
-  File "game/script.rpy", line 134, in <module>
-    $ add_hour(2)
-  File "game/script.rpy", line 35, in add_hour
-    check_if_lose()
-  File "game/script.rpy", line 41, in check_if_lose
-    lose_flag = true
-NameError: name 'true' is not defined
+  File "game/script.rpy", line 109, in script
+    menu:
+  File "renpy/common/000window.rpy", line 132, in _window_auto_callback
+    _window_show(auto=True)
+  File "renpy/common/000window.rpy", line 75, in _window_show
+    renpy.with_statement(trans)
+  File "game/script.rpy", line 47, in execute
+    screen stats_screen():
+  File "game/script.rpy", line 47, in execute
+    screen stats_screen():
+  File "game/script.rpy", line 48, in execute
+    frame:
+NameError: Name 'money' is not defined.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 134, in script
-    $ add_hour(2)
-  File "C:\Programy\renpy-8.3.2-sdk\renpy\ast.py", line 821, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "C:\Programy\renpy-8.3.2-sdk\renpy\python.py", line 1178, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/script.rpy", line 134, in <module>
-    $ add_hour(2)
-  File "game/script.rpy", line 35, in add_hour
-    check_if_lose()
-  File "game/script.rpy", line 41, in check_if_lose
-    lose_flag = true
-NameError: name 'true' is not defined
+  File "game/script.rpy", line 109, in script
+    menu:
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\ast.py", line 1582, in execute
+    statement_name(name)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\ast.py", line 52, in statement_name
+    i(name)
+  File "renpy/common/000window.rpy", line 132, in _window_auto_callback
+    _window_show(auto=True)
+  File "renpy/common/000window.rpy", line 75, in _window_show
+    renpy.with_statement(trans)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\exports\statementexports.py", line 257, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\display\core.py", line 1578, in do_with
+    return self.interact(trans_pause=True,
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\display\core.py", line 2215, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\display\core.py", line 2745, in interact_core
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\display\displayable.py", line 434, in visit_all
+    d.visit_all(callback, seen)
+  [Previous line repeated 1 more time]
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\display\screen.py", line 480, in visit_all
+    callback(self)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\display\core.py", line 2745, in <lambda>
+    root_widget.visit_all(lambda d : d.per_interact())
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\display\screen.py", line 491, in per_interact
+    self.update()
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\display\screen.py", line 697, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 47, in execute
+    screen stats_screen():
+  File "game/script.rpy", line 47, in execute
+    screen stats_screen():
+  File "game/script.rpy", line 48, in execute
+    frame:
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\text\text.py", line 2093, in _scope
+    return self.set_text(self.text_parameter, scope, self.substitute, update)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\text\text.py", line 2132, in set_text
+    i, did_sub = renpy.substitutions.substitute(i, scope, substitute) # type: ignore
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\substitutions.py", line 373, in substitute
+    s = interpolate(s, variables) # type: ignore
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\substitutions.py", line 86, in interpolate
+    raise e
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\substitutions.py", line 78, in interpolate
+    value = renpy.python.py_eval(code, {}, scope)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\python.py", line 1209, in py_eval
+    return py_eval_bytecode(code, globals, locals)
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\python.py", line 1202, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "<none>", line 1, in <module>
+  File "C:\Programy\renpy-8.3.2-sdk\renpy\substitutions.py", line 313, in __getitem__
+    raise NameError("Name '{}' is not defined.".format(key))
+NameError: Name 'money' is not defined.
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.3.2.24090902
 Symulator Studenta 1.0
-Wed Jan  8 23:04:07 2025
+Thu Jan  9 23:42:18 2025
