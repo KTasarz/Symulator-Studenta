@@ -14,23 +14,14 @@ init python:
     sleep_drain_rate = 5            #szybkość spadku zmęczenia
     satisfaction = 100              #zadowolenie - jeśli spadnie do zera nie można wykonywać niektórych czynności
     satisfaction_drain_rate = 3     #szybkość spadku zadowolenia
-
     stress = 0                      #stres - jeśli urośnie do 100 to gracz przegrywa
     stress_gain_rate = 1            #szybkość rosniecia stresu
-    intelligence = 0                #inteligencja - wpływa na zaliczenia testu
-    skills = 0                      #umiejętoność praktyczne - wpływa na zaliczenia testu
-    stress = 0                      #stres - jeśli urośnie do 100
-    stress_gain_rate = 2            #szybkość rośniecia stresu
     intelligence = 0                #inteligencja - wpływa na zaliczenia testu
     skills = 0                      #umiejętoność praktyczne - wpływa na zaliczenia testu
     money = 10                      #ilość pięniedzy w posiadaniu bohatera
     energy_drink_amount = 0         #ilość napoju energetycznego
     bar_amount = 0                  #ilość batoników
     beer_amount = 0                 #ilość piwa
-    money = 10                      #Pięniadze - ilość pięniedzy bohatera liczone w ZŁ
-    energy_drink_amount = 0         #Ilość posiadanych Enegetyków
-    bar_amount = 0                  #Ilość posiadanych batoników
-    beer_amount = 0                 #Ilość posiadanych piw
     lose_flag = False               #flaga pilnująca czy gracz żyje
 
 
@@ -74,17 +65,7 @@ screen stats_screen():
             text "Stres: [stress]"
             text "Inteligencja: [intelligence]"
             text "Umiejętność praktyczne: [skills]"
-            text "Dzień [day]"
-            text "Godzina [hour]"
-            text "Pięniądze: [money] zł"
-            #TODO zmienić wyświetlane wartości na paski (zwyjątkiem intela i umiejętności)
-            text "Głód [hunger]"
-            text "Zmęczenie [sleep]"
-            text "Zadowolenie [satisfaction]"
-            text "Stres: [stress]"
-            text "Inteligencja [intelligence]"
-            text "umiejętność praktyczne [skills]"
-
+            
 #Znalazłem w dokumentacji Renpy
 #TODO będzie trzeba zmienić położenie guzików i dodanie tła
 screen main_menu():
