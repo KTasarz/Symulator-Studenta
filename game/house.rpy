@@ -7,5 +7,6 @@
 
 label house_main:
 
+    scene bg house
     "To jest dom"
     jump choose

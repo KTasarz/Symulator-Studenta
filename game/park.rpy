@@ -7,6 +7,7 @@
 
 label park_main:
 
+    scene bg park
     "Jesteś w parku"
 
     # This ends the game.

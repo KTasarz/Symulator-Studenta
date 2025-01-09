@@ -7,6 +7,7 @@
 
 label shop_main:
 
+    scene bg shop
     "Jesteś w sklepie"
 
     # This ends the game.

@@ -45,14 +45,14 @@ screen stats_screen():
     frame:
         xalign 0.0 ypos 0
         vbox:
-            text "Dzień [day]"
-            text "Godzina [hour]"
+            text "Dzień: [day]"
+            text "Godzina: [hour]"
             #TODO zmienić wyświetlane wartości na paski (zwyjątkiem intela i umiejętności)
-            text "Głód [hunger]"
-            text "Zmęczenie [sleep]"
-            text "Zadowolenie [satisfaction]"
-            text "Inteligencja [intelligence]"
-            text "umiejętoność praktyczne [skills]"
+            text "Głód: [hunger]"
+            text "Zmęczenie: [sleep]"
+            text "Zadowolenie: [satisfaction]"
+            text "Inteligencja: [intelligence]"
+            text "Umiejętoność praktyczne: [skills]"
 
 #Znalazłem w dokumentacji Renpy
 #TODO będzie trzeba zmienić położenie guzików i dodanie tła
