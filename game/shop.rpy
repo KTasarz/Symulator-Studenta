@@ -1,4 +1,4 @@
-﻿screen shoping_screen():
+screen shoping_screen():
     frame:
         xalign 1.0 yalign 0.0
 
@@ -19,6 +19,7 @@
 
 label shop_main:
 
+    scene bg shop
     scene bg shop
     "Jesteś w sklepie"
     

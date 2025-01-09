@@ -7,6 +7,7 @@
 
 label restaurant_main:
 
+    scene bg restaurant
     "Jesteś w reustaracji"
 
     # This ends the game.

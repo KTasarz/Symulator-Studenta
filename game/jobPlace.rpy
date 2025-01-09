@@ -7,6 +7,7 @@
 
 label job_place_main:
 
+    scene bg job
     "Jesteś w biurze pracy"
 
     # This ends the game.
