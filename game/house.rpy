@@ -51,7 +51,7 @@ label dormitory_choose:
     menu:
         "Jesteś w swoim pokoju"
         "Co chesz zrobić?"
-
+        
         "Pójść spać" if hour >= 22 or hour <= 6:
             $ add_hour(8)
             $ sleep = sleep + (80 + sleep_drain_rate * 8)
@@ -69,17 +69,6 @@ label dormitory_choose:
             if lose_flag:
                 jump game_over_screen
             "To byla dobra drzemka"
-            jump dormitory_choose
-        
-        "Zjeść obiad" if hour >= 14 and hour <= 17:
-            $ add_hour(1)
-            $ hunger = hunger + (30 + hunger_drain_rate)
-            $ sleep = sleep + 2
-            $ stress = stress - 5
-            $ check_stats_surplus()
-            if lose_flag:
-                jump game_over_screen
-            "Zjadłeś dobry obiad razem z rodziną"
             jump dormitory_choose
 
         "Wyjść z domu":
