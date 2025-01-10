@@ -79,23 +79,33 @@ screen stats_screen:
 screen stats_expanded_screen:
     frame:
         xalign 0.0 ypos 60
+        xsize 475
         vbox:
 
             text "Dzień: [day]"
             text "Godzina: [hour]"
             text "Pieniądze: [money] zł"
             #TODO zmienić wyświetlane wartości na paski (zwyjątkiem intela i umiejętności)
-            text "Głód: [hunger]"
-            text "Energia: [sleep]"
-            text "Zadowolenie: [satisfaction]"
-            text "Stres: [stress]"
+            text "Głód:"
+            bar:
+                value StaticValue(hunger, 100)               
+            text "Energia:"
+            bar:
+                value StaticValue(sleep, 100)
+            text "Zadowolenie:"
+            bar:
+                value StaticValue(satisfaction, 100)
+            text "Stres:"
+            bar:
+                value StaticValue(stress, 100)
             text "Inteligencja: [intelligence]"
             text "Umiejętność praktyczne: [skills]"
 
 #Wyświetla menu z użyciem przedmiotów
 screen inventory_screen:
     frame:
-        xalign 0.0 yalign 0.48
+        xalign 0.0 yalign 0.655
+        xsize 475
         has vbox
 
         text "Twoje aktualne przedmioty:"
