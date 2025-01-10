@@ -26,7 +26,6 @@ init python:
     family_house_flag = True        #flaga która określa czy gracz mieszka w domu rodzinnym
     dormitory_flag = False          #flaga która określa czy grasz mieszka w akademiku
 
-
     #Metoda do zmiany godziny, poprzez podanie ile czasu upłyneło, wpływa na statytyki
     def add_hour(number_of_hours_passed):
         global hour
@@ -117,8 +116,7 @@ label start:
     show screen stats_screen()
 
     #TODO wywalić to jak dodamy własne tła/postacie
-    scene bg room
-
+    scene bg void
     show eileen happy
 
     jump choose
@@ -127,9 +125,9 @@ label start:
 label choose:
     #Tymczasowe menu pozwalające przechodzić na obiekty na mapie
     #TODO Zmienić to na mape z obiektami na kliknięcie
+    scene bg city
     menu:
         "Gdzie chcesz iść?"
-
         "Dom":
             jump house_main
 
@@ -159,6 +157,5 @@ label test_zone:
     $ add_hour(2)
     if lose_flag:
         jump game_over_screen
-
     jump choose
     

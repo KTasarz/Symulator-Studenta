@@ -20,7 +20,6 @@ screen shoping_screen():
 label shop_main:
 
     scene bg shop
-    scene bg shop
     "Jesteś w sklepie"
     
     jump shop_choose
