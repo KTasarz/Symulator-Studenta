@@ -74,7 +74,7 @@ screen stats_screen():
 
             text "Dzień: [day]"
             text "Godzina: [hour]"
-            text "Pięniądze: [money] zł"
+            text "Pieniądze: [money] zł"
             #TODO zmienić wyświetlane wartości na paski (zwyjątkiem intela i umiejętności)
             text "Głód: [hunger]"
             text "Energia: [sleep]"
@@ -136,7 +136,7 @@ label choose:
         "Uczelnia":
             jump school_main
 
-        "Reustauracja":
+        "Restauracja":
             jump restaurant_main
 
         "Sklep":
