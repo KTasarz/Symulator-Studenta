@@ -2,3 +2,4 @@
 /game/cache
 /game/saves
 log.txt
+*.rpyc
