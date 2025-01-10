@@ -18,7 +18,7 @@ init python:
     stress_gain_rate = 1            #szybkość rosniecia stresu
     intelligence = 0                #inteligencja - wpływa na zaliczenia testu
     skills = 0                      #umiejętoność praktyczne - wpływa na zaliczenia testu
-    money = 10                      #ilość pięniedzy w posiadaniu bohatera
+    money = 100                      #ilość pięniedzy w posiadaniu bohatera
     energy_drink_amount = 0         #ilość napoju energetycznego
     bar_amount = 0                  #ilość batoników
     beer_amount = 0                 #ilość piwa

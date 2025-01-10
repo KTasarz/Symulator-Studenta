@@ -9,9 +9,6 @@ label job_place_main:
 
     scene bg job
     "Jesteś w biurze pracy"
-
-    # This ends the game.
-
     jump job_place_choose
 
 label job_place_choose:
