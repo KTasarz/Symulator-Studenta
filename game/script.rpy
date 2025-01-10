@@ -18,7 +18,7 @@ init python:
     stress_gain_rate = 1            #szybkość rosniecia stresu
     intelligence = 0                #inteligencja - wpływa na zaliczenia testu
     skills = 0                      #umiejętoność praktyczne - wpływa na zaliczenia testu
-    money = 100                      #ilość pięniedzy w posiadaniu bohatera
+    money = 10                      #ilość pięniedzy w posiadaniu bohatera
     energy_drink_amount = 0         #ilość napoju energetycznego
     bar_amount = 0                  #ilość batoników
     beer_amount = 0                 #ilość piwa
@@ -65,10 +65,20 @@ init python:
         if stress < 0:
             stress = 0
 
-#Wyświetla statystyki na ekranie
-screen stats_screen():
+#Wyświetla pare statystyk na ekranie
+screen stats_screen:
     frame:
-        xalign 0.0 ypos 0
+        xalign 0.0 ypos 60
+        vbox:
+
+            text "Dzień: [day]"
+            text "Godzina: [hour]"
+            text "Pieniądze: [money] zł"
+
+#Wyświetla statystyki na ekranie
+screen stats_expanded_screen:
+    frame:
+        xalign 0.0 ypos 60
         vbox:
 
             text "Dzień: [day]"
@@ -81,7 +91,33 @@ screen stats_screen():
             text "Stres: [stress]"
             text "Inteligencja: [intelligence]"
             text "Umiejętność praktyczne: [skills]"
-            
+
+#Wyświetla menu z użyciem przedmiotów
+screen inventory_screen:
+    frame:
+        xalign 0.0 yalign 0.48
+        has vbox
+
+        text "Twoje aktualne przedmioty:"
+        textbutton "Użyj: Energetyk([energy_drink_amount])":
+            action If(energy_drink_amount >= 1 and sleep <= 88, [SetVariable("sleep", sleep + 12), SetVariable("energy_drink_amount", energy_drink_amount - 1)])
+            activate_sound "audio/Drinking.mp3"
+        textbutton "Użyj: Batonik([bar_amount])":
+            action If(bar_amount >= 1 and hunger <= 96, [SetVariable("hunger", hunger + 4), SetVariable("bar_amount", bar_amount - 1)])
+            activate_sound "audio/Eating-sound.mp3"
+        textbutton "Użyj: Piwo([beer_amount])":
+            action If(beer_amount >= 1 and satisfaction <= 94, [SetVariable("satisfaction", satisfaction + 6), SetVariable("beer_amount", beer_amount - 1)])
+            activate_sound "audio/Drinking.mp3"
+
+#Guzik do rozszerzania ekwipunku
+screen inventory_button_screen:
+    frame:
+        xalign 0.0 yalign 0.0
+        has vbox
+
+        textbutton "Ekwipunek":
+            action [ToggleScreen("stats_screen"),ToggleScreen("stats_expanded_screen"),ToggleScreen("inventory_screen")]
+          
 #Znalazłem w dokumentacji Renpy
 #TODO będzie trzeba zmienić położenie guzików i dodanie tła
 screen main_menu():
@@ -113,7 +149,8 @@ style mm_button:
 # The game starts here.
 
 label start:
-    show screen stats_screen()
+    show screen stats_screen
+    show screen inventory_button_screen
 
     #TODO wywalić to jak dodamy własne tła/postacie
     scene bg void
@@ -123,27 +160,43 @@ label start:
 
 
 label choose:
+    hide screen stats_screen
+    hide screen inventory_button_screen
+    hide screen stats_expanded_screen
+    hide screen inventory_screen
     #Tymczasowe menu pozwalające przechodzić na obiekty na mapie
     #TODO Zmienić to na mape z obiektami na kliknięcie
     scene bg city
     menu:
         "Gdzie chcesz iść?"
         "Dom":
+            show screen stats_screen
+            show screen inventory_button_screen
             jump house_main
 
         "Uczelnia":
+            show screen stats_screen
+            show screen inventory_button_screen
             jump school_main
 
         "Restauracja":
+            show screen stats_screen
+            show screen inventory_button_screen
             jump restaurant_main
 
         "Sklep":
+            show screen stats_screen
+            show screen inventory_button_screen
             jump shop_main
 
         "Park":
+            show screen stats_screen
+            show screen inventory_button_screen
             jump park_main
 
         "Biuro Pracy":
+            show screen stats_screen
+            show screen inventory_button_screen
             jump job_place_main
 
         "TESTZONE":
@@ -154,8 +207,10 @@ label game_over_screen:
     return
 
 label test_zone:
-    $ add_hour(2)
-    if lose_flag:
-        jump game_over_screen
+    python:
+        money = money + 1000
+        energy_drink_amount = energy_drink_amount + 10
+        bar_amount = bar_amount + 10
+        beer_amount = beer_amount + 10
     jump choose
     
