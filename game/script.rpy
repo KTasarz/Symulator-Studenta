@@ -23,6 +23,8 @@ init python:
     bar_amount = 0                  #ilość batoników
     beer_amount = 0                 #ilość piwa
     lose_flag = False               #flaga pilnująca czy gracz żyje
+    family_house_flag = True        #flaga która określa czy gracz mieszka w domu rodzinnym
+    dormitory_flag = False          #flaga która określa czy grasz mieszka w akademiku
 
 
     #Metoda do zmiany godziny, poprzez podanie ile czasu upłyneło, wpływa na statytyki
@@ -49,6 +51,21 @@ init python:
         if hunger <= 0 or sleep <= 0 or satisfaction <= 0:
             lose_flag = True
 
+    #Metoda sprawdzająca czy statystyki wyszły powyżej maksimum
+    def check_stats_surplus():
+        global hunger
+        global sleep
+        global satisfaction
+        global stress
+        if hunger > 100:
+            hunger = 100
+        if sleep > 100:
+            sleep = 100
+        if satisfaction > 100:
+            satisfaction = 100
+        if stress < 0:
+            stress = 0
+
 #Wyświetla statystyki na ekranie
 screen stats_screen():
     frame:
@@ -57,10 +74,10 @@ screen stats_screen():
 
             text "Dzień: [day]"
             text "Godzina: [hour]"
-            text "Pięniądze: [money] zł"
+            text "Pieniądze: [money] zł"
             #TODO zmienić wyświetlane wartości na paski (zwyjątkiem intela i umiejętności)
             text "Głód: [hunger]"
-            text "Zmęczenie: [sleep]"
+            text "Energia: [sleep]"
             text "Zadowolenie: [satisfaction]"
             text "Stres: [stress]"
             text "Inteligencja: [intelligence]"
@@ -119,7 +136,7 @@ label choose:
         "Uczelnia":
             jump school_main
 
-        "Reustauracja":
+        "Restauracja":
             jump restaurant_main
 
         "Sklep":
