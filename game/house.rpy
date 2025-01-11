@@ -25,10 +25,23 @@ label family_house_choose:
         "Pójść się zdrzemnąć" if hour > 6 and hour < 22:
             $ add_hour(2)
             $ sleep = sleep + (10 + sleep_drain_rate * 2)
+            $ event_random = renpy.random.randint(1, 20)
+            if event_random <= 4:
+                #EVENT - Za długa drzemka...
+                "Twoja drzemka była dłuższa niż się spodziewałeś..."
+                $ sleep = sleep + (10 + sleep_drain_rate * event_random)
+            elif event_random == 5:
+                #EVENT - remont sąsiada
+                $ sleep = sleep - (10 + sleep_drain_rate * 2)
+                play sound "audio/renovation.mp3"
+                "Oczywiście kiedy chciałeś się zdrzemnąć to sąsiad ma remont...{p}Jedyne co osiągnąłeś z tej drzemki to ból głowy..."
+                $ satisfaction = satisfaction - 2
+            else:
+                #Brak eventów
+                "To byla dobra drzemka"
             $ check_stats_surplus()
             if lose_flag:
                 jump game_over_screen
-            "To byla dobra drzemka"
             jump family_house_choose
         
         "Zjeść obiad" if (hour >= 14 and hour <= 17) and eaten_dinner_with_family == False:
