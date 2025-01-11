@@ -6,25 +6,26 @@
 define p = Character("Player", color="#0069ff") #Kolor Merito :)
 
 init python:
-    day = 1                         #dzien - ma śledzić aktualny dzień
-    hour = 8                        #godzina - przechodzenie do innych lokacji/interakcje powoduje postęp czasu
-    hunger = 100                    #głod - jeśli głód spadnie do zero - game over
-    hunger_drain_rate = 4           #szybkość spadku głodu
-    sleep = 100                     #zmęczenie - jeśli zmęczenie spadnie do zera - game over
-    sleep_drain_rate = 5            #szybkość spadku zmęczenia
-    satisfaction = 100              #zadowolenie - jeśli spadnie do zera nie można wykonywać niektórych czynności
-    satisfaction_drain_rate = 3     #szybkość spadku zadowolenia
-    stress = 0                      #stres - jeśli urośnie do 100 to gracz przegrywa
-    stress_gain_rate = 1            #szybkość rosniecia stresu
-    intelligence = 0                #inteligencja - wpływa na zaliczenia testu
-    skills = 0                      #umiejętoność praktyczne - wpływa na zaliczenia testu
-    money = 10                      #ilość pięniedzy w posiadaniu bohatera
-    energy_drink_amount = 0         #ilość napoju energetycznego
-    bar_amount = 0                  #ilość batoników
-    beer_amount = 0                 #ilość piwa
-    lose_flag = False               #flaga pilnująca czy gracz żyje
-    family_house_flag = True        #flaga która określa czy gracz mieszka w domu rodzinnym
-    dormitory_flag = False          #flaga która określa czy grasz mieszka w akademiku
+    day = 1                             #dzien - ma śledzić aktualny dzień
+    hour = 8                            #godzina - przechodzenie do innych lokacji/interakcje powoduje postęp czasu
+    hunger = 100                        #głod - jeśli głód spadnie do zero - game over
+    hunger_drain_rate = 4               #szybkość spadku głodu
+    sleep = 100                         #zmęczenie - jeśli zmęczenie spadnie do zera - game over
+    sleep_drain_rate = 5                #szybkość spadku zmęczenia
+    satisfaction = 100                  #zadowolenie - jeśli spadnie do zera nie można wykonywać niektórych czynności
+    satisfaction_drain_rate = 3         #szybkość spadku zadowolenia
+    stress = 0                          #stres - jeśli urośnie do 100 to gracz przegrywa
+    stress_gain_rate = 1                #szybkość rosniecia stresu
+    intelligence = 0                    #inteligencja - wpływa na zaliczenia testu
+    skills = 0                          #umiejętoność praktyczne - wpływa na zaliczenia testu
+    money = 10                          #ilość pięniedzy w posiadaniu bohatera
+    energy_drink_amount = 0             #ilość napoju energetycznego
+    bar_amount = 0                      #ilość batoników
+    beer_amount = 0                     #ilość piwa
+    lose_flag = False                   #flaga pilnująca czy gracz żyje
+    family_house_flag = True            #flaga która określa czy gracz mieszka w domu rodzinnym
+    dormitory_flag = False              #flaga która określa czy grasz mieszka w akademiku
+    eaten_dinner_with_family = False    #flaga która określa czy grasz zjadł obiad z rodziną
 
     #Metoda do zmiany godziny, poprzez podanie ile czasu upłyneło, wpływa na statytyki
     def add_hour(number_of_hours_passed):
@@ -42,7 +43,12 @@ init python:
         if hour >= 24:
             day += 1
             hour -= 24
+            flags_reset()
         check_if_lose()
+
+    def flags_reset():
+        global eaten_dinner_with_family
+        eaten_dinner_with_family = False
     
     #Metoda sprawdzająca czy statystyki są 0 lub mniejsze, jeśli tak to przenosi do game over screen
     def check_if_lose():

@@ -31,7 +31,7 @@ label family_house_choose:
             "To byla dobra drzemka"
             jump family_house_choose
         
-        "Zjeść obiad" if hour >= 14 and hour <= 17:
+        "Zjeść obiad" if (hour >= 14 and hour <= 17) and eaten_dinner_with_family == False:
             $ add_hour(1)
             $ hunger = hunger + (30 + hunger_drain_rate)
             $ sleep = sleep + 2
@@ -40,7 +40,14 @@ label family_house_choose:
             if lose_flag:
                 jump game_over_screen
             "Zjadłeś dobry obiad razem z rodziną"
+            $ eaten_dinner_with_family = True
             jump family_house_choose
+
+        "Pouczyć się":
+            $ add_hour(2)
+            $ intelligence = intelligence + renpy.random.randint(1, 5)
+            $ skills = skills + renpy.random.randint(0, 2)
+            "Nauczyłeś się kilku nowych rzeczy"
 
         "Wyjść z domu":
             jump choose
@@ -70,6 +77,12 @@ label dormitory_choose:
                 jump game_over_screen
             "To byla dobra drzemka"
             jump dormitory_choose
+
+        "Pouczyć się":
+            $ add_hour(2)
+            $ intelligence = intelligence + renpy.random.randint(1, 5)
+            $ skills = skills + renpy.random.randint(0, 2)
+            "Nauczyłeś się kilku nowych rzeczy"
 
         "Wyjść z domu":
             jump choose
