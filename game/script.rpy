@@ -28,6 +28,7 @@ init python:
     family_house_flag = True            #flaga która określa czy gracz mieszka w domu rodzinnym
     dormitory_flag = False              #flaga która określa czy grasz mieszka w akademiku
     eaten_dinner_with_family = False    #flaga która określa czy grasz zjadł obiad z rodziną
+    meet_mystery_trader_at_Park = False #flaga która określa czy grasz spotkał tajemniczego handlarza w parku
 
     #Metoda do zmiany godziny, poprzez podanie ile czasu upłyneło, wpływa na statytyki
     def add_hour(number_of_hours_passed):
@@ -51,6 +52,8 @@ init python:
     def flags_reset():
         global eaten_dinner_with_family
         eaten_dinner_with_family = False
+        global meet_mystery_trader_at_Park
+        meet_mystery_trader_at_Park = False
     
     #Metoda sprawdzająca czy statystyki są 0 lub mniejsze, jeśli tak to przenosi do game over screen
     def check_if_lose():

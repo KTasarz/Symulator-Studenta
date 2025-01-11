@@ -81,12 +81,13 @@ label park_choose:
                 $ sleep = sleep - 2;
             elif event_random == 2:
                 #EVENT - Bezdomny zaczepia cie/Dziwny sprzedawca proponuje ci swoje towary
-                if hour >= 20 or hour <= 4:
+                if (hour >= 20 or hour <= 4) and meet_mystery_trader_at_Park == False:
                     #Wersja nocna
                     "Już miałeś ruszyć się do biegu, kiedy nagle zaczepiła cię tajemnicza osoba w czarnym płaszczu"
                     m "Hej...{w} chesz może...{w} kupić...{w} faworka?"
                     "Spojrzałeś na niego jak na wariata"
                     m "Jak nie chcesz...{w} faworka...{w} mogę ci udostępić...{w} inne 'Wyjątkowe' Towary..."
+                    $ meet_mystery_trader_at_Park = True
                     menu:
                         "Co chcesz kupić?"
                         
@@ -140,6 +141,15 @@ label park_choose:
                             elif event_random == 5:
                                 "Jabyś był szcześliwszy!"
                                 $ satisfaction_drain_rate = satisfaction_drain_rate - 1
+                        "Nic":
+                            p "Nie dzięki, nic nie potrzebuje"
+                            m "Twoja strata"
+                            "Tajemniczy jegomość odwrócił się od ciebie i zaczął iść w swoją strone{p}A ty wróciłeś do pierwotnego planu"
+                            "Jednak myśl że po parku chodzi tajemniczy typ nie dawała ci spokoju..."
+                            $ sleep = sleep - 2;
+                            $ satisfaction = satisfaction + 10 + satisfaction_drain_rate
+                            "Pobiegałeś sobie wokół parku{w}, Czując czyiś wzrok..."
+
                             
                 else:
                     #Wersja dzienna
