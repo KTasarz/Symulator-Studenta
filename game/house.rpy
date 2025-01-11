@@ -45,6 +45,8 @@ label family_house_choose:
 
         "Pouczyć się":
             $ add_hour(2)
+            if lose_flag:
+                jump game_over_screen
             $ intelligence = intelligence + renpy.random.randint(1, 5)
             $ skills = skills + renpy.random.randint(0, 2)
             "Nauczyłeś się kilku nowych rzeczy"

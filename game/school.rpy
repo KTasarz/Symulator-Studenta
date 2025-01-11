@@ -3,5 +3,4 @@
     scene bg hallway
     "Jesteś na uczelni"
 
-
     jump choose

@@ -1,9 +1,4 @@
-﻿# The script of the game goes in this file.
-
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
-define p = Character("Player", color="#0069ff") #Kolor Merito :)
+﻿define p = Character("Player", color="#0069ff") #Kolor Merito :)
 define h = Character("Bezdomnny", color= "#4f3e20")
 define m = Character("???", color= "#CECECE")
 
