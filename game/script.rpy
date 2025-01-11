@@ -88,7 +88,7 @@ screen stats_screen:
 screen stats_expanded_screen:
     frame:
         xalign 0.0 ypos 60
-        xsize 475
+        xsize 500
         vbox:
 
             text "Dzień: [day]"
@@ -114,7 +114,7 @@ screen stats_expanded_screen:
 screen inventory_screen:
     frame:
         xalign 0.0 yalign 0.655
-        xsize 475
+        xsize 500
         has vbox
 
         text "Twoje aktualne przedmioty:"
