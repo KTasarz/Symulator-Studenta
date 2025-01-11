@@ -4,6 +4,8 @@
 # name of the character.
 
 define p = Character("Player", color="#0069ff") #Kolor Merito :)
+define h = Character("Bezdomnny", color= "#4f3e20")
+define m = Character("???", color= "#CECECE")
 
 init python:
     day = 1                             #dzien - ma śledzić aktualny dzień
@@ -62,6 +64,7 @@ init python:
         global sleep
         global satisfaction
         global stress
+        global money
         if hunger > 100:
             hunger = 100
         if sleep > 100:
@@ -70,6 +73,8 @@ init python:
             satisfaction = 100
         if stress < 0:
             stress = 0
+        if money < 0:
+            money = 0
 
 #Wyświetla pare statystyk na ekranie
 screen stats_screen:
