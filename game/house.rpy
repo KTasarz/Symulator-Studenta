@@ -35,6 +35,7 @@ label family_house_choose:
                 play sound "audio/renovation.mp3"
                 "Oczywiście kiedy chciałeś się zdrzemnąć to sąsiad ma remont...{p}Jedyne co osiągnąłeś z tej drzemki to ból głowy..."
                 $ satisfaction = satisfaction - 2
+                stop sound
             else:
                 #Brak eventów
                 "To byla dobra drzemka"
@@ -70,7 +71,40 @@ label family_house_choose:
                 $ intelligence = intelligence + renpy.random.randint(1, 5)
                 $ skills = skills + renpy.random.randint(0, 2)
                 "Nauczyłeś się kilku nowych rzeczy"
-
+            jump family_house_choose 
+        "Serfować po internecie":
+            $ add_hour(1)
+            $ event_random = renpy.random.randint(1, 10)
+            if event_random <= 3:
+                #EVENT - znalezienie strony z kotkami
+                "Serfując po sieci, natknąłeś się na strone z zdjęciami słodkich kociąt!"
+                p "Awwww ten pokazuje swoje małe łapeczki~"
+                "Nawet nie zauważyłeś jak czas szybko minął..."
+                $ add_hour(2)
+                $ stress = stress - (40 + stress_gain_rate * 3)
+                $ satisfaction = satisfaction + (10 + satisfaction_drain_rate * 3)
+            elif event_random == 4:
+                #EVENT - znalezienie strony z odpowiedziami do testu
+                "Serfując po sieci znalazłeś forum dotyczące twojej uczelni{p}Znajdujesz na nich wpisy o testach wykładowców..."
+                "W środku znajdujesz odpowiedzi do testu!"
+                "Szybko robisz notatki z tych odpowiedzi!"
+                $ stress = stress - (10 + stress_gain_rate)
+                $ intelligence = intelligence + renpy.random.randint(1, 5)
+            elif event_random == 5:
+                #EVENT - rozmowa z znajomym
+                "Serfując po sieci napisał do ciebie stary znajomy z poprzedniej szkoły!"
+                "Popisaliście chwilę i wymienieliście się informacjami o waszym życiu"
+                "Okazuje się, że on też ma bogate życie Studenta!"
+                $ stress = stress - (10 + stress_gain_rate)
+                $ satisfaction = satisfaction + (5 + satisfaction_drain_rate)
+            else:
+                #Brak eventów
+                "Serfujesz sobie po sieci, ale nic co by przykuło twoją uwagę na długo..."
+                $ stress = stress - (5 + stress_gain_rate)
+            $ check_stats_surplus()
+            if lose_flag:
+                jump game_over_screen
+            jump family_house_choose
         "Wyjść z domu":
             jump choose
 
@@ -141,6 +175,41 @@ label dormitory_choose:
                 $ intelligence = intelligence + renpy.random.randint(1, 5)
                 $ skills = skills + renpy.random.randint(0, 2)
                 "Nauczyłeś się kilku nowych rzeczy"
+            jump dormitory_choose
 
+        "Serfować po internecie":
+            $ add_hour(1)
+            $ event_random = renpy.random.randint(1, 10)
+            if event_random <= 3:
+                #EVENT - znalezienie strony z kotkami
+                "Serfując po sieci, natknąłeś się na strone z zdjęciami słodkich kociąt!"
+                p "Awwww ten pokazuje swoje małe łapeczki~"
+                "Nawet nie zauważyłeś jak czas szybko minął..."
+                $ add_hour(2)
+                $ stress = stress - (40 + stress_gain_rate * 3)
+                $ satisfaction = satisfaction + (10 + satisfaction_drain_rate * 3)
+            elif event_random == 4:
+                #EVENT - znalezienie strony z odpowiedziami do testu
+                "Serfując po sieci znalazłeś forum dotyczące twojej uczelni{p}Znajdujesz na nich wpisy o testach wykładowców..."
+                "W środku znajdujesz odpowiedzi do testu!"
+                "Szybko robisz notatki z tych odpowiedzi!"
+                $ stress = stress - (10 + stress_gain_rate)
+                $ intelligence = intelligence + renpy.random.randint(1, 5)
+            elif event_random == 5:
+                #EVENT - rozmowa z znajomym
+                "Serfując po sieci napisał do ciebie stary znajomy z poprzedniej szkoły!"
+                "Popisaliście chwilę i wymienieliście się informacjami o waszym życiu"
+                "Okazuje się, że on też ma bogate życie Studenta!"
+                $ stress = stress - (10 + stress_gain_rate)
+                $ satisfaction = satisfaction + (5 + satisfaction_drain_rate)
+            else:
+                #Brak eventów
+                "Serfujesz sobie po sieci, ale nic co by przykuło twoją uwagę na długo..."
+                $ stress = stress - (5 + stress_gain_rate)
+            $ check_stats_surplus()
+            if lose_flag:
+                jump game_over_screen
+            jump dormitory_choose
+        
         "Wyjść z domu":
             jump choose

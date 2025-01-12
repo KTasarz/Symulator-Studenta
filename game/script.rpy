@@ -225,12 +225,24 @@ label game_over_screen:
     return
 
 label tuition:
-    "Nadszedł czas na zapłate czesnych - 930zł!"
-    if money >= 930:
-        "Zapłaciłeś czesne, możesz kontynuować nauke"
+    if family_house_flag:
+        "Nadszedł czas na zapłate czesnych - 930zł!"
+        if money >= 930:
+            $ money = money - 930
+            "Zapłaciłeś czesne, możesz kontynuować nauke"
+            return
+        else:
+            "Niestety nie stać cię na zapłatę czesnych, przez co zostajesz wydalony z uczelni..."
+            jump game_over_screen
     else:
-        "Niestety nie stać cię na zapłatę czesnych, przez co zostajesz wydalony z uczelni..."
-        jump game_over_screen
+        "Nadszedł czas na zapłate czesnych i za akademik - 1430zł!"
+        if money >= 1430:
+            $ money = money - 1430
+            "Zapłaciłeś czesne, możesz kontynuować nauke"
+            return
+        else:
+            "Niestety nie stać cię na zapłatę czesnych, przez co zostajesz wydalony z uczelni..."
+            jump game_over_screen
 
 label test_zone:
     python:
