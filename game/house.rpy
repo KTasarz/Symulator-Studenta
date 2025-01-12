@@ -1,6 +1,5 @@
 ﻿#Główny label domu, przenosi do wyborów zależnie od domu w którym mieszka gracz
 label house_main:
-
     if (family_house_flag):
         jump family_house_choose
     elif (dormitory_flag):
@@ -81,9 +80,8 @@ label dormitory_choose:
     menu:
         "Jesteś w swoim pokoju"
         "Co chesz zrobić?"
-        
         "Pójść spać" if hour >= 22 or hour <= 6:
-            $ event_random = renpy.random.randint(1, 1)
+            $ event_random = renpy.random.randint(1, 8)
             $ add_hour(8)
             if event_random == 1:
                 #EVENT - impreza
@@ -99,7 +97,7 @@ label dormitory_choose:
                         "Szybko się przebrałeś i dołączyłeś do imprezy{p}Pokazałeś im swoje ruchy taneczne!"
                         $ stress = stress - (10 + stress_gain_rate * 8)
                         $ satisfaction = satisfaction + (40 + satisfaction_drain_rate * 8)
-                        "Impreza trwała do samego rana...{p}Czujesz się po niej nie samowicie zmęczony...{p} Ale uważasz że było warto"
+                        "Impreza trwała do samego rana...{p}Czujesz się po niej niesamowicie zmęczony...{p}Ale uważasz że było warto"
                 stop sound
             else:
                 $ sleep = sleep + (80 + sleep_drain_rate * 8)

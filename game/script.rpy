@@ -1,8 +1,9 @@
-﻿define p = Character("Player", color="#0069ff") #Kolor Merito :)
+﻿define p = Character("[name]", color="#0069ff") #Kolor Merito :)
 define h = Character("Bezdomnny", color= "#4f3e20")
 define m = Character("???", color= "#CECECE")
 
 init python:
+    name = "Player"                     #nazwa - imie gracza
     day = 1                             #dzien - ma śledzić aktualny dzień
     hour = 8                            #godzina - przechodzenie do innych lokacji/interakcje powoduje postęp czasu
     hunger = 100                        #głod - jeśli głód spadnie do zero - game over
@@ -20,8 +21,8 @@ init python:
     bar_amount = 0                      #ilość batoników
     beer_amount = 0                     #ilość piwa
     lose_flag = False                   #flaga pilnująca czy gracz żyje
-    family_house_flag = False            #flaga która określa czy gracz mieszka w domu rodzinnym
-    dormitory_flag = True              #flaga która określa czy grasz mieszka w akademiku
+    family_house_flag = False           #flaga która określa czy gracz mieszka w domu rodzinnym
+    dormitory_flag = False              #flaga która określa czy grasz mieszka w akademiku
     eaten_dinner_with_family = False    #flaga która określa czy grasz zjadł obiad z rodziną
     meet_mystery_trader_at_Park = False #flaga która określa czy grasz spotkał tajemniczego handlarza w parku
 
@@ -138,45 +139,37 @@ screen inventory_button_screen:
 
         textbutton "Ekwipunek":
             action [ToggleScreen("stats_screen"),ToggleScreen("stats_expanded_screen"),ToggleScreen("inventory_screen")]
-          
-#Znalazłem w dokumentacji Renpy
-#TODO będzie trzeba zmienić położenie guzików i dodanie tła
-screen main_menu():
-
-    # This ensures that any other menu screen is replaced.
-    tag menu
-
-    # The background of the main menu.
-    window:
-        style "mm_root"
-
-    # The main menu buttons.
-    frame:
-        style_prefix "mm"
-        xalign .98
-        yalign .98
-
-        has vbox
-
-        textbutton _("Start Game") action Start()
-        textbutton _("Load Game") action ShowMenu("load")
-        textbutton _("Preferences") action ShowMenu("preferences")
-        textbutton _("Help") action Help()
-        textbutton _("Quit") action Quit(confirm=False)
-
-style mm_button:
-    size_group "mm"
 
 # The game starts here.
 
 label start:
+    #Prolog
+    #Możemy dodać bardziej kwieciste dialogi
+    scene bg void
+    "Leżysz sobie w swoim łóżku,{w} myśląc sobie o nowym scenariuszu życia, który otwiera się przed tobą..."
+    "Od jutra jesteś studentem, a co za tym idzie, nowe obowiązki i cele..."
+    menu:
+        "Wybierając studia postanowiłeś że..."
+        "Będziesz dalej mieszkać z rodzicami":
+            $ family_house_flag = True
+            "W końcu uczelnia nie jest daleko od twojego domu, to możesz dalej mieszkać na garnuszku rodziców..."
+        "Zamieszkasz w akademiku":
+            $ dormitory_flag = True
+            "Postanowiłeś się w końcu usamodzielnić od rodziców i poznać smak samodzielnego życia..."
+    "Pora w końcu zasnąć, żeby jutro świat poznał nowego studenta,{w} nowego ciebie,{w} nowego..."
+    $ name = renpy.input("(Podaj swoje imie)")
+    $ name = name.strip()
+
+    p "Jestem gotów na jutro!"
+    "Zamknąłeś oczy i pochłoneły cię objęcia snu..."
+
+    if family_house_flag:
+        scene bg house
+    elif dormitory_flag:
+        scene bg dormitory
+    "Rano, wstałeś z łóżka, umyłeś zęby i zjadłeś śniadanie{p}Teraz jesteś gotowy by rozpocząć nowy dzień jako student!"
     show screen stats_screen
     show screen inventory_button_screen
-
-    #TODO wywalić to jak dodamy własne tła/postacie
-    scene bg void
-    show eileen happy
-
     jump choose
 
 
