@@ -20,8 +20,8 @@ init python:
     bar_amount = 0                      #ilość batoników
     beer_amount = 0                     #ilość piwa
     lose_flag = False                   #flaga pilnująca czy gracz żyje
-    family_house_flag = True            #flaga która określa czy gracz mieszka w domu rodzinnym
-    dormitory_flag = False              #flaga która określa czy grasz mieszka w akademiku
+    family_house_flag = False            #flaga która określa czy gracz mieszka w domu rodzinnym
+    dormitory_flag = True              #flaga która określa czy grasz mieszka w akademiku
     eaten_dinner_with_family = False    #flaga która określa czy grasz zjadł obiad z rodziną
     meet_mystery_trader_at_Park = False #flaga która określa czy grasz spotkał tajemniczego handlarza w parku
 
@@ -55,6 +55,8 @@ init python:
         global lose_flag
         if hunger <= 0 or sleep <= 0 or satisfaction <= 0:
             lose_flag = True
+        else:
+            lose_flag = False
 
     #Metoda sprawdzająca czy statystyki wyszły powyżej maksimum
     def check_stats_surplus():
