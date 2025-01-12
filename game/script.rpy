@@ -21,6 +21,7 @@ init python:
     bar_amount = 0                      #ilość batoników
     beer_amount = 0                     #ilość piwa
     lose_flag = False                   #flaga pilnująca czy gracz żyje
+    lose_tuition_flag = False           #flaga która określa że gracz przegrał przez brak zapłaconych czesnych
     family_house_flag = False           #flaga która określa czy gracz mieszka w domu rodzinnym
     dormitory_flag = False              #flaga która określa czy grasz mieszka w akademiku
     eaten_dinner_with_family = False    #flaga która określa czy grasz zjadł obiad z rodziną
@@ -44,6 +45,9 @@ init python:
             hour -= 24
             flags_reset()
         check_if_lose()
+        if day % 30 == 0:
+            renpy.call("tuition")
+
 
     def flags_reset():
         global eaten_dinner_with_family
@@ -220,11 +224,21 @@ label game_over_screen:
     "Przegrałeś"
     return
 
+label tuition:
+    "Nadszedł czas na zapłate czesnych - 930zł!"
+    if money >= 930:
+        "Zapłaciłeś czesne, możesz kontynuować nauke"
+    else:
+        "Niestety nie stać cię na zapłatę czesnych, przez co zostajesz wydalony z uczelni..."
+        jump game_over_screen
+
 label test_zone:
     python:
         money = money + 1000
         energy_drink_amount = energy_drink_amount + 10
         bar_amount = bar_amount + 10
         beer_amount = beer_amount + 10
+        day = 29
+    
     jump choose
     
