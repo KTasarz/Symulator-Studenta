@@ -1,5 +1,6 @@
 ﻿label job_place_main:
-
+    show screen stats_screen
+    show screen inventory_button_screen
     scene bg job
     "Jesteś w biurze pracy"
     jump job_place_choose

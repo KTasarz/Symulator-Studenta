@@ -1,5 +1,7 @@
 ﻿#głowny label parku
 label park_main:
+    show screen stats_screen
+    show screen inventory_button_screen
     scene bg park
     jump park_choose
 
@@ -148,9 +150,7 @@ label park_choose:
                             "Jednak myśl że po parku chodzi tajemniczy typ nie dawała ci spokoju..."
                             $ sleep = sleep - 2;
                             $ satisfaction = satisfaction + 10 + satisfaction_drain_rate
-                            "Pobiegałeś sobie wokół parku{w}, Czując czyiś wzrok..."
-
-                            
+                            "Pobiegałeś sobie wokół parku{w}, Czując czyiś wzrok..."                           
                 else:
                     #Wersja dzienna
                     "Podczas twojego biegu zaczepił cię bezdomny"

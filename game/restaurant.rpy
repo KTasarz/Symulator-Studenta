@@ -19,7 +19,8 @@
         text "----------------------------------"    
 
 label restaurant_main:
-
+    show screen stats_screen
+    show screen inventory_button_screen
     scene bg restaurant
     "Jesteś w reustaracji"
     jump restaurant_choose

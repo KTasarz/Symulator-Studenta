@@ -18,7 +18,8 @@ screen shoping_screen():
         text "----------------------------------"
 
 label shop_main:
-
+    show screen stats_screen
+    show screen inventory_button_screen
     scene bg shop
     "Jesteś w sklepie"
     

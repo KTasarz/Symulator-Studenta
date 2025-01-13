@@ -1,5 +1,7 @@
 ﻿#Główny label domu, przenosi do wyborów zależnie od domu w którym mieszka gracz
 label house_main:
+    show screen stats_screen
+    show screen inventory_button_screen
     if (family_house_flag):
         jump family_house_choose
     elif (dormitory_flag):

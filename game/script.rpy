@@ -144,6 +144,19 @@ screen inventory_button_screen:
         textbutton "Ekwipunek":
             action [ToggleScreen("stats_screen"),ToggleScreen("stats_expanded_screen"),ToggleScreen("inventory_screen")]
 
+#Mapa
+screen city_map:
+    imagemap:
+        idle "City ground.png"
+        hover "City hover.png"
+
+        hotspot(380, 90 , 220, 270) action Jump("job_place_main") alt "Biuro pracy"
+        hotspot(38, 328, 250, 230) action Jump("restaurant_main") alt "Reustauracja"
+        hotspot(450, 480, 400, 300) action Jump("park_main") alt "Park"
+        hotspot(155, 815, 220, 260) action Jump("house_main") alt "Dom"
+        hotspot(1170, 320, 400, 350) action Jump("school_main") alt "Uczelnia"
+        hotspot(1655, 400, 180, 160) action Jump("shop_main") alt "sklep"
+
 # The game starts here.
 
 label start:
@@ -184,41 +197,7 @@ label choose:
     hide screen inventory_screen
     #Tymczasowe menu pozwalające przechodzić na obiekty na mapie
     #TODO Zmienić to na mape z obiektami na kliknięcie
-    scene bg city
-    menu:
-        "Gdzie chcesz iść?"
-        "Dom":
-            show screen stats_screen
-            show screen inventory_button_screen
-            jump house_main
-
-        "Uczelnia":
-            show screen stats_screen
-            show screen inventory_button_screen
-            jump school_main
-
-        "Restauracja":
-            show screen stats_screen
-            show screen inventory_button_screen
-            jump restaurant_main
-
-        "Sklep":
-            show screen stats_screen
-            show screen inventory_button_screen
-            jump shop_main
-
-        "Park":
-            show screen stats_screen
-            show screen inventory_button_screen
-            jump park_main
-
-        "Biuro Pracy":
-            show screen stats_screen
-            show screen inventory_button_screen
-            jump job_place_main
-
-        "TESTZONE":
-            jump test_zone                
+    call screen city_map              
 
 label game_over_screen:
     "Przegrałeś"
@@ -242,15 +221,4 @@ label tuition:
             return
         else:
             "Niestety nie stać cię na zapłatę czesnych, przez co zostajesz wydalony z uczelni..."
-            jump game_over_screen
-
-label test_zone:
-    python:
-        money = money + 1000
-        energy_drink_amount = energy_drink_amount + 10
-        bar_amount = bar_amount + 10
-        beer_amount = beer_amount + 10
-        day = 29
-    
-    jump choose
-    
+            jump game_over_screen    
