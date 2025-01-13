@@ -10,22 +10,22 @@ label job_place_choose:
         "Co chcesz zrobić?"
         "Pracuj na pełną zmianę":
             $ add_hour(8)
-            $ bonus = renpy.random.randint(20, 50)
-            $ money += 100 + bonus
+            $ bonus = renpy.random.randint(25, 75)
+            $ money += 200 + bonus
             $ stress += 30
             $ check_stats_surplus()
-            "Zarobiłeś [100 + bonus] zł."
+            "Zarobiłeś [200 + bonus] zł."
             if lose_flag:
                 jump game_over_screen
             jump job_place_choose
 
         "Pracuj na pół zmiany":
             $ add_hour(4)
-            $ bonus = renpy.random.randint(5, 20)
-            $ money += 50 + bonus
+            $ bonus = renpy.random.randint(8, 30)
+            $ money += 100 + bonus
             $ stress += 15
             $ check_stats_surplus()
-            "Zarobiłeś [50 + bonus] zł."
+            "Zarobiłeś [100 + bonus] zł."
             if lose_flag:
                 jump game_over_screen
             jump job_place_choose

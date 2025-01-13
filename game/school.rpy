@@ -15,12 +15,18 @@ label school_choose:
             "Spędziłeś czas na słuchaniu wykładu."
             $ intelligence += 3
             $ check_stats_surplus()
+            $ score_lecture += 1
+            if lose_flag:
+                jump game_over_screen
             jump school_choose
 
         "Idź na warsztaty":
             $ add_hour(3)
             $ skills += 3
             $ check_stats_surplus()
+            $ score_lession += 1
+            if lose_flag:
+                jump game_over_screen
             jump school_choose
 
         "Podejdź do egzaminu":

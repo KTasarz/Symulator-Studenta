@@ -1,6 +1,7 @@
 ﻿define p = Character("[name]", color="#0069ff") #Kolor Merito :)
 define h = Character("Bezdomnny", color= "#4f3e20")
 define m = Character("???", color= "#CECECE")
+define nvle = Character("", kind = nvl)
 
 init python:
     name = "Player"                     #nazwa - imie gracza
@@ -20,12 +21,27 @@ init python:
     energy_drink_amount = 0             #ilość napoju energetycznego
     bar_amount = 0                      #ilość batoników
     beer_amount = 0                     #ilość piwa
+    big_beer_amount = 0                 #ilosć piwa - mocny full
+    #Flagi:
     lose_flag = False                   #flaga pilnująca czy gracz żyje
     lose_tuition_flag = False           #flaga która określa że gracz przegrał przez brak zapłaconych czesnych
     family_house_flag = False           #flaga która określa czy gracz mieszka w domu rodzinnym
     dormitory_flag = False              #flaga która określa czy grasz mieszka w akademiku
     eaten_dinner_with_family = False    #flaga która określa czy grasz zjadł obiad z rodziną
     meet_mystery_trader_at_Park = False #flaga która określa czy grasz spotkał tajemniczego handlarza w parku
+    #Liczniki:
+    score_lecture = 0
+    score_lession = 0
+    score_energy_drink = 0
+    score_bar = 0
+    score_beer = 0
+    score_big_beer = 0
+    score_pizza = 0
+    score_kebab = 0
+    score_cola = 0
+    score_pill = 0
+    score_boar = 0
+
 
     #Metoda do zmiany godziny, poprzez podanie ile czasu upłyneło, wpływa na statytyki
     def add_hour(number_of_hours_passed):
@@ -35,6 +51,7 @@ init python:
         global satisfaction
         global stress
         global day
+        global lose_flag
         hour += number_of_hours_passed
         hunger -= (number_of_hours_passed * hunger_drain_rate)
         sleep -= (number_of_hours_passed * sleep_drain_rate)
@@ -46,7 +63,9 @@ init python:
             flags_reset()
         check_if_lose()
         if day % 30 == 0:
-            renpy.call("tuition")
+            renpy.jump("tuition")
+        if day == 120:
+            renpy.jump("final_exam")
 
 
     def flags_reset():
@@ -121,19 +140,22 @@ screen stats_expanded_screen:
 #Wyświetla menu z użyciem przedmiotów
 screen inventory_screen:
     frame:
-        xalign 0.0 yalign 0.655
+        xalign 0.0 ypos 570
         xsize 500
         has vbox
 
         text "Twoje aktualne przedmioty:"
         textbutton "Użyj: Energetyk([energy_drink_amount])":
-            action If(energy_drink_amount >= 1 and sleep <= 88, [SetVariable("sleep", sleep + 12), SetVariable("energy_drink_amount", energy_drink_amount - 1)])
+            action If(energy_drink_amount >= 1, [SetVariable("sleep", sleep + 12), SetVariable("energy_drink_amount", energy_drink_amount - 1), SetVariable("score_energy_drink",score_energy_drink + 1)])
             activate_sound "audio/Drinking.mp3"
         textbutton "Użyj: Batonik([bar_amount])":
-            action If(bar_amount >= 1 and hunger <= 96, [SetVariable("hunger", hunger + 4), SetVariable("bar_amount", bar_amount - 1)])
+            action If(bar_amount >= 1, [SetVariable("hunger", hunger + 4), SetVariable("bar_amount", bar_amount - 1), SetVariable("score_bar",score_bar + 1)])
             activate_sound "audio/Eating-sound.mp3"
         textbutton "Użyj: Piwo([beer_amount])":
-            action If(beer_amount >= 1 and satisfaction <= 94, [SetVariable("satisfaction", satisfaction + 6), SetVariable("beer_amount", beer_amount - 1), SetVariable("stress", stress - 10)])
+            action If(beer_amount >= 1, [SetVariable("satisfaction", satisfaction + 6), SetVariable("beer_amount", beer_amount - 1),SetVariable("score_beer",score_beer + 1)])
+            activate_sound "audio/Drinking.mp3"
+        textbutton "Użyj: Piwo Mocny full([big_beer_amount])":
+            action If(big_beer_amount >= 1, [SetVariable("satisfaction", satisfaction + 10), SetVariable("big_beer_amount", big_beer_amount - 1), SetVariable("stress", stress - 10),SetVariable("score_beer",score_beer + 1),SetVariable("score_big_beer",score_big_beer + 1)])
             activate_sound "audio/Drinking.mp3"
 
 #Guzik do rozszerzania ekwipunku
@@ -199,26 +221,72 @@ label choose:
     #TODO Zmienić to na mape z obiektami na kliknięcie
     call screen city_map              
 
-label game_over_screen:
-    "Przegrałeś. Git gud."
-    return
-
 label tuition:
     if family_house_flag:
         "Nadszedł czas opłacić czesne - 930zł!"
         if money >= 930:
             $ money = money - 930
             "Opłaciłeś czesne, możesz kontynuować naukę."
-            return
+            $ hunger = 100
+            $ sleep = 100
+            $ satisfaction = 100
+            $ stress = 0
         else:
             "Niestety nie stać cię na opłacenie czesnych, przez co zostajesz wydalony z uczelni..."
-            jump game_over_screen
+            $ lose_flag = True
+            return
     else:
         "Nadszedł czas na opłate czesnych i za akademik - 1430zł!"
         if money >= 1430:
             $ money = money - 1430
             "Opłaciłeś czesne, możesz kontynuować naukę."
-            return
+            $ hunger = 100
+            $ sleep = 100
+            $ satisfaction = 100
+            $ stress = 0
         else:
             "Niestety nie stać cię na opłacenie czesnych, przez co zostajesz wydalony z uczelni..."
-            jump game_over_screen    
+            $ lose_flag = True
+            return  
+
+label final_exam:
+    $ hour = 9
+    hide screen stats_expanded_screen
+    hide screen inventory_screen
+    scene bg hallway
+    "Naszedł moment egzaminu,{w} Jeżeli go zdasz, to zaliczysz semestr i będziesz mógł przejść do następnego semestru."
+    "Siadając przy ławce, otaczają cię myśli,{w} co jeśli nie uczyłeś się wystarczająco?{p}Co się stanie jeśli nie zaliczysz tego egzaminu?"
+    "Egzaminator ogłasza rozpoczęcie egzaminu, bierzesz długopis w rękę i zaczynasz pisać..."
+    ".{w}.{w}.{w}.{w}."
+    $ hour = 12
+    "Skończyłeś... {w} Teraz trzeba czekać na wyniki"
+    if (family_house_flag):
+        scene bg house
+    elif (dormitory_flag):
+        scene bg dormitory
+    $ hour = 13
+    "Wróciłeś do domu, i już miałeś kłaść się do łóżka kiedy dostałeś powiadomienie na telefon"
+    "Okazało się że twój egzamin został już sprawdzony!"
+    "Serce ci wali jak szalone kiedy przybliżasz palec do guziku \"Sprawdź wyniki\""
+    if (intelligence + skills)/2 >= 200:
+        "Zaliczone"
+        jump game_over_screen
+    else:
+        "Nie zaliczone"
+        p "..."
+        $ lose_flag = True
+        jump game_over_screen
+
+label game_over_screen:
+    if lose_flag:
+        "Przegrałeś. Git gud."
+    else:
+        "Gratulację zaliczyłeś semestr!"
+    nvle "Ilość wykładów na których uczestniczyłeś: [score_lecture]{p}Ilość warsztatów na których uczestniczyłeś: [score_lession]"
+    nvle "Ilość wypitych energetyków: [score_energy_drink]{p}Ilość zjedzonych batoników: [score_bar]"
+    nvle "Ilość wypitych piw: [score_beer]{p}W tym mocne fullem: [big_beer_amount]"
+    nvle "Ilość zjedzonych pizz: [score_pizza]{p}Ilość zjedzonych kebabów:[score_kebab]"
+    nvle "ilość wypitych coli: [score_cola]"
+    nvle "Ilość pogłaskanych dzików: [score_boar]{p}Ilość wziętych piguł: [score_pill]"
+
+    return

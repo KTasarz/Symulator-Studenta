@@ -59,6 +59,7 @@ label park_choose:
                             "Nawet nie wiesz jak szybko minął czas kiedy głaskałeś dziki.{p}Po intesywnej terapii głaskania, dziki odeszły zostawiając cie samego w parku"
                             $ satisfaction = satisfaction + 15
                             $ stress = stress - 10
+                            $ score_boar += 1
                         else:
                             play sound "audio/Boar chrum.mp3"
                             "Dziki nie dały się pogłaskać."
@@ -132,8 +133,8 @@ label park_choose:
                                 $ stress = 0
                             elif event_random == 2:
                                 "Mądrzejszy!"
-                                $ intelligence = intelligence + 100
-                                $ skills = skills + 100
+                                $ intelligence = intelligence + 50
+                                $ skills = skills + 50
                             elif event_random == 3:
                                 "Jakbyś mógł jeść mniej!"
                                 $ hunger_drain_rate = hunger_drain_rate - 1
@@ -143,6 +144,7 @@ label park_choose:
                             elif event_random == 5:
                                 "Jabyś był szcześliwszy!"
                                 $ satisfaction_drain_rate = satisfaction_drain_rate - 1
+                            $ score_pill += 1
                         "Nic":
                             p "Nie dzięki, nic nie potrzebuje."
                             m "Twoja strata."

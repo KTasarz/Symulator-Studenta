@@ -1,6 +1,6 @@
 screen shoping_screen():
     frame:
-        xalign 1.0 yalign 0.0
+        xalign 0.5 yalign 0.4
 
         has vbox
 
@@ -12,8 +12,11 @@ screen shoping_screen():
         textbutton "Baton 3 zł":
             action If(money >= 3, [SetVariable("money", money - 3), SetVariable("bar_amount", bar_amount + 1)])
             activate_sound "audio/Cha Ching.mp3"
-        textbutton "Piwo 6 zł":
-            action If(money >= 6, [SetVariable("money", money - 6), SetVariable("beer_amount", beer_amount + 1)])
+        textbutton "Piwo 4 zł":
+            action If(money >= 4, [SetVariable("money", money - 4), SetVariable("beer_amount", beer_amount + 1)])
+            activate_sound "audio/Cha Ching.mp3"
+        textbutton "Piwo Mocny Full 10 zł":
+            action If(money >= 10, [SetVariable("money", money - 10), SetVariable("big_beer_amount", big_beer_amount + 1)])
             activate_sound "audio/Cha Ching.mp3"
         text "----------------------------------"
 
@@ -33,6 +36,13 @@ label shop_choose:
             show screen shoping_screen
             "Kliknij aby wyjść"
             hide screen shoping_screen
+            jump shop_choose
+        "CHEAT":
+            $ money = 2000
+            $ day = 119
+            $ hour = 1
+            $ skills = 201
+            $ intelligence = 201
             jump shop_choose
         "Wyjść":
             jump choose
