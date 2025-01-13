@@ -249,14 +249,24 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
+            textbutton _("Cofnij") action Rollback()
+            textbutton _("Historia") action ShowMenu('history')
+            textbutton _("Pomiń") action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("Auto") action Call("multipla_jumpscare")
+            textbutton _("Zapisz") action ShowMenu('save')
+            textbutton _("Szybki zapis") action QuickSave()
+            textbutton _("Szybkie wczytanie") action QuickLoad()
+            textbutton _("Opcje") action ShowMenu('preferences')
+
+#Eater Egg
+label multipla_jumpscare:
+    show multipla:
+        xalign 0.5
+        yalign 0.5
+    play sound "audio/car.mp3"
+    p "Co do..."
+    hide multipla
+    return
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -301,13 +311,13 @@ screen navigation():
 
         else:
 
-            textbutton _("History") action ShowMenu("history")
+            textbutton _("Historia") action ShowMenu("history")
 
-            textbutton _("Save") action ShowMenu("save")
+            textbutton _("Zapisz") action ShowMenu("save")
 
-        textbutton _("Load") action ShowMenu("load")
+        textbutton _("Wczytaj") action ShowMenu("load")
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Opcje") action ShowMenu("preferences")
 
         if _in_replay:
 
@@ -315,20 +325,13 @@ screen navigation():
 
         elif not main_menu:
 
-            textbutton _("Main Menu") action MainMenu()
-
-        textbutton _("About") action ShowMenu("about")
-
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
-
-            ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+            textbutton _("Menu główne") action MainMenu()
 
         if renpy.variant("pc"):
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
+            textbutton _("Wyjdź") action Quit(confirm=not main_menu)
 
 
 style navigation_button is gui_button

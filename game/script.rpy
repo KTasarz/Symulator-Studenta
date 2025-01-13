@@ -178,7 +178,7 @@ screen city_map:
         hotspot(450, 480, 400, 300) action Jump("park_main") alt "Park"
         hotspot(155, 815, 220, 260) action Jump("house_main") alt "Dom"
         hotspot(1170, 320, 400, 350) action Jump("school_main") alt "Uczelnia"
-        hotspot(1655, 400, 180, 160) action Jump("shop_main") alt "sklep"
+        hotspot(1655, 400, 180, 170) action Jump("shop_main") alt "sklep"
 
 # The game starts here.
 
@@ -217,8 +217,6 @@ label choose:
     hide screen inventory_button_screen
     hide screen stats_expanded_screen
     hide screen inventory_screen
-    #Tymczasowe menu pozwalające przechodzić na obiekty na mapie
-    #TODO Zmienić to na mape z obiektami na kliknięcie
     call screen city_map              
 
 label tuition:
