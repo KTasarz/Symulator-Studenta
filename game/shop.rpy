@@ -37,12 +37,5 @@ label shop_choose:
             "Kliknij aby wyjść"
             hide screen shoping_screen
             jump shop_choose
-        "CHEAT":
-            $ money = 2000
-            $ day = 119
-            $ hour = 1
-            $ skills = 201
-            $ intelligence = 201
-            jump shop_choose
         "Wyjść":
             jump choose
