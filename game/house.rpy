@@ -11,7 +11,7 @@ label house_main:
 label family_house_choose:
     scene bg house
     menu:
-        "Jesteś w swoim domu rodzinnym"
+        "Wchodzisz do swojego domu rodzinnego."
         "Co chesz zrobić?"
         "Pójść spać" if hour >= 22 or hour <= 6:
             $ add_hour(8)
@@ -35,12 +35,12 @@ label family_house_choose:
                 #EVENT - remont sąsiada
                 $ sleep = sleep - (10 + sleep_drain_rate * 2)
                 play sound "audio/renovation.mp3"
-                "Oczywiście kiedy chciałeś się zdrzemnąć to sąsiad ma remont...{p}Jedyne co osiągnąłeś z tej drzemki to ból głowy..."
+                "Oczywiście, kiedy chciałeś się zdrzemnąć to sąsiad ma remont...{p}Jedyne co osiągnąłeś z tej drzemki to ból głowy..."
                 $ satisfaction = satisfaction - 2
                 stop sound
             else:
                 #Brak eventów
-                "To byla dobra drzemka"
+                "To byla dobra drzemka."
             $ check_stats_surplus()
             if lose_flag:
                 jump game_over_screen
@@ -54,7 +54,7 @@ label family_house_choose:
             $ check_stats_surplus()
             if lose_flag:
                 jump game_over_screen
-            "Zjadłeś dobry obiad razem z rodziną"
+            "Zjadłeś dobry obiad razem z rodziną."
             $ eaten_dinner_with_family = True
             jump family_house_choose
 

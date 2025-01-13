@@ -164,7 +164,7 @@ label start:
     #Możemy dodać bardziej kwieciste dialogi
     scene bg void
     "Leżysz sobie w swoim łóżku,{w} myśląc sobie o nowym scenariuszu życia, który otwiera się przed tobą..."
-    "Od jutra jesteś studentem, a co za tym idzie, nowe obowiązki i cele..."
+    "Od jutra będziesz studentem, a co za tym idzie, nowe obowiązki i cele..."
     menu:
         "Wybierając studia postanowiłeś że..."
         "Będziesz dalej mieszkać z rodzicami":
@@ -172,7 +172,7 @@ label start:
             "W końcu uczelnia nie jest daleko od twojego domu, to możesz dalej mieszkać na garnuszku rodziców..."
         "Zamieszkasz w akademiku":
             $ dormitory_flag = True
-            "Postanowiłeś się w końcu usamodzielnić od rodziców i poznać smak samodzielnego życia..."
+            "Postanowiłeś się w końcu oddzielić od rodziców i poznać smak samodzielnego życia..."
     "Pora w końcu zasnąć, żeby jutro świat poznał nowego studenta,{w} nowego ciebie,{w} nowego..."
     $ name = renpy.input("(Podaj swoje imie)")
     $ name = name.strip()
@@ -184,11 +184,10 @@ label start:
         scene bg house
     elif dormitory_flag:
         scene bg dormitory
-    "Rano, wstałeś z łóżka, umyłeś zęby i zjadłeś śniadanie{p}Teraz jesteś gotowy by rozpocząć nowy dzień jako student!"
+    "Nastał ranek, wstałeś z łóżka, umyłeś zęby i zjadłeś śniadanie.{p}Teraz jesteś gotowy by rozpocząć nowy dzień jako student!"
     show screen stats_screen
     show screen inventory_button_screen
     jump choose
-
 
 label choose:
     hide screen stats_screen
@@ -200,25 +199,25 @@ label choose:
     call screen city_map              
 
 label game_over_screen:
-    "Przegrałeś"
+    "Przegrałeś. Git gud."
     return
 
 label tuition:
     if family_house_flag:
-        "Nadszedł czas na zapłate czesnych - 930zł!"
+        "Nadszedł czas opłacić czesne - 930zł!"
         if money >= 930:
             $ money = money - 930
-            "Zapłaciłeś czesne, możesz kontynuować nauke"
+            "Opłaciłeś czesne, możesz kontynuować naukę."
             return
         else:
-            "Niestety nie stać cię na zapłatę czesnych, przez co zostajesz wydalony z uczelni..."
+            "Niestety nie stać cię na opłacenie czesnych, przez co zostajesz wydalony z uczelni..."
             jump game_over_screen
     else:
-        "Nadszedł czas na zapłate czesnych i za akademik - 1430zł!"
+        "Nadszedł czas na opłate czesnych i za akademik - 1430zł!"
         if money >= 1430:
             $ money = money - 1430
-            "Zapłaciłeś czesne, możesz kontynuować nauke"
+            "Opłaciłeś czesne, możesz kontynuować naukę."
             return
         else:
-            "Niestety nie stać cię na zapłatę czesnych, przez co zostajesz wydalony z uczelni..."
+            "Niestety nie stać cię na opłacenie czesnych, przez co zostajesz wydalony z uczelni..."
             jump game_over_screen    

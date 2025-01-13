@@ -2,6 +2,19 @@
     show screen stats_screen
     show screen inventory_button_screen
     scene bg hallway
-    "Jesteś na uczelni"
+    "Wchodzisz na uczelnie."
 
-    jump choose
+    jump school_choose
+
+label school_choose:
+    menu:
+        "Stoisz na środku uczelnianego korytarza. Jaki jest twój plan?"
+
+        "Idź na wykłady":
+            jump school_choose
+
+        "Idź na warsztaty":
+            jump school_choose
+
+        "Wyjść":
+            jump choose

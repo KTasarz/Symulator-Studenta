@@ -21,13 +21,13 @@ label shop_main:
     show screen stats_screen
     show screen inventory_button_screen
     scene bg shop
-    "Jesteś w sklepie"
+    "Wchodzisz do sklepu."
     
     jump shop_choose
 
 label shop_choose:
     menu:
-        "Co chesz teraz zrobić w sklepie?"
+        "Co checsz teraz zrobić w sklepie?"
 
         "Zrobić zakupy":
             show screen shoping_screen

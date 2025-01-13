@@ -2,7 +2,7 @@
     show screen stats_screen
     show screen inventory_button_screen
     scene bg job
-    "Jesteś w biurze pracy"
+    "Wchodzisz do biura pracy."
     jump job_place_choose
 
 label job_place_choose:

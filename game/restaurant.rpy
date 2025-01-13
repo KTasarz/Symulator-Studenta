@@ -22,17 +22,17 @@ label restaurant_main:
     show screen stats_screen
     show screen inventory_button_screen
     scene bg restaurant
-    "Jesteś w reustaracji"
+    "Wchodzisz do reustaracji."
     jump restaurant_choose
 
 label restaurant_choose:
     menu:
-        "Co chesz teraz zrobić w sklepie?"
+        "Siadasz do stolika."
 
         "Zamów coś":
             show screen restaurant_screen
             "Kliknij aby wyjść"
             hide screen restaurant_screen
             jump restaurant_choose
-        "Wyjść":
+        "Wyjdź":
             jump choose
