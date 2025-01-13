@@ -8,13 +8,13 @@
         text "Kliknij tu aby kupić co chcesz"
         text "----------------------------------"
         textbutton "Pizza 30 zł (Głód 40)":
-            action If(money >= 30 and hunger < 100, [SetVariable("money", money - 30), SetVariable("hunger", hunger + 40)])
+            action If(money >= 30 and hunger < 100, [SetVariable("money", money - 30), SetVariable("hunger", hunger + 40), SetVariable("satisfaction", satisfaction + 10)])
             activate_sound "audio/Eating-sound.mp3"
         textbutton "Kebab 25 zł (Głód 30)":
-            action If(money >= 25 and hunger < 100, [SetVariable("money", money - 25), SetVariable("hunger", hunger + 30)])
+            action If(money >= 25 and hunger < 100, [SetVariable("money", money - 25), SetVariable("hunger", hunger + 30), SetVariable("satisfaction", satisfaction + 10)])
             activate_sound "audio/Eating-sound.mp3"
         textbutton "Cola 7 zł (Głód 10)":
-            action If(money >= 7 and hunger < 100, [SetVariable("money", money - 7), SetVariable("hunger", hunger + 10)])
+            action If(money >= 7 and hunger < 100, [SetVariable("money", money - 7), SetVariable("hunger", hunger + 10), SetVariable("satisfaction", satisfaction + 5)])
             activate_sound "audio/Drinking.mp3"
         text "----------------------------------"    
 

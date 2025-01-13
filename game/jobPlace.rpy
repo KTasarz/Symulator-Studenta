@@ -23,7 +23,7 @@ label job_place_choose:
             $ add_hour(4)
             $ bonus = renpy.random.randint(5, 20)
             $ money += 50 + bonus
-            $ stress += 30
+            $ stress += 15
             $ check_stats_surplus()
             "Zarobiłeś [50 + bonus] zł."
             if lose_flag:

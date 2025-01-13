@@ -140,7 +140,6 @@ label dormitory_choose:
                 $ stress = stress - 10
                 "Wyspałeś się"
             $ check_stats_surplus()
-            $ check_if_lose()
             if lose_flag:
                 jump game_over_screen
             jump dormitory_choose

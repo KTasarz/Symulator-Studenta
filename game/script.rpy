@@ -80,6 +80,7 @@ init python:
             stress = 0
         if money < 0:
             money = 0
+        check_if_lose()
 
 #Wyświetla pare statystyk na ekranie
 screen stats_screen:
@@ -132,7 +133,7 @@ screen inventory_screen:
             action If(bar_amount >= 1 and hunger <= 96, [SetVariable("hunger", hunger + 4), SetVariable("bar_amount", bar_amount - 1)])
             activate_sound "audio/Eating-sound.mp3"
         textbutton "Użyj: Piwo([beer_amount])":
-            action If(beer_amount >= 1 and satisfaction <= 94, [SetVariable("satisfaction", satisfaction + 6), SetVariable("beer_amount", beer_amount - 1)])
+            action If(beer_amount >= 1 and satisfaction <= 94, [SetVariable("satisfaction", satisfaction + 6), SetVariable("beer_amount", beer_amount - 1), SetVariable("stress", stress - 10)])
             activate_sound "audio/Drinking.mp3"
 
 #Guzik do rozszerzania ekwipunku
